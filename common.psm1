@@ -20,10 +20,15 @@ function Get-InstallationPath {
 
 function Get-AccountPaths {
     param(
-        [string]$WTFPath
+        [string]$WTFPath,
+        [string[]]$Filter
     )
     $accountPath = Join-Path $WTFPath "Account" -Resolve
-    return Get-ChildItem $accountPath -Exclude "SavedVariables"
+    $accountPaths = Get-ChildItem $accountPath -Exclude "SavedVariables"
+    return $accountPaths | Where-Object {
+        $item = Get-Item $_
+        return !$Accounts -or ($item.Name -in $Accounts)
+    }
 }
 
 function New-ZipPath {

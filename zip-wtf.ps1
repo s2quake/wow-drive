@@ -1,4 +1,4 @@
-Import-Module "./common.psm1" -Verbose
+Import-Module "./common.psm1"
 
 $garbagePaths = @(
     "WTF/Config.wtf",
@@ -23,6 +23,7 @@ try {
 }
 finally {
     if ($srcPath) {
-       Remove-Item $srcPath -Recurse -Force
+        Remove-Item $srcPath -Recurse -Force
     }
+    Remove-Module "common"
 }
