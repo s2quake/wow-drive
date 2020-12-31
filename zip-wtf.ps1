@@ -7,19 +7,13 @@ $garbagePaths = @(
 )
 
 try {
-    $installPath = Get-InstallationPath
-    $wtfPath = Join-Path $installPath "WTF" -Resolve -ErrorAction Stop
-
-    Copy-Item -Path $wtfPath -Destination "~" -Recurse
-    $srcPath = Join-Path "~" "WTF" -Resolve
-    $garbagePaths | ForEach-Object {
-        if (Test-Path $_) {
-            Remove-Item $_ -Recurse -Force
-        }
-    }
-
+    $tempPath = Resolve-Path "~"
+    $wtfPath = Get-WTFPath
     $zipPath = New-ZipPath $PSScriptRoot "WTF"
-    Compress-Archive -Path "$srcPath/*" -DestinationPath $zipPath
+    Copy-Item $wtfPath $tempPath -Recurse
+    $srcPath = Join-Path $tempPath "WTF" -Resolve
+    $garbagePaths | Where-Object { Test-Path $_ } | ForEach-Object { Remove-Item $_ -Recurse -Force }
+    Compress-Archive "$srcPath/*" $zipPath
 }
 finally {
     if ($srcPath) {

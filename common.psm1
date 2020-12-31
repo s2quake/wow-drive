@@ -18,6 +18,16 @@ function Get-InstallationPath {
     return $installPath
 }
 
+function Get-WTFPath {
+    $installationPath = Get-InstallationPath
+    return Join-Path $installationPath "WTF" -Resolve -ErrorAction Stop
+}
+
+function Get-AddonsPath {
+    $installationPath = Get-InstallationPath
+    return Join-Path $installationPath "Interface/AddOns" -Resolve -ErrorAction Stop
+}
+
 function Get-AccountPaths {
     param(
         [string]$WTFPath,
@@ -63,4 +73,4 @@ function Get-LatestZipPath {
     return Join-Path $Path $zipName
 }
 
-Export-ModuleMember Get-InstallationPath, Get-AccountPaths, New-ZipPath, Get-LatestZipPath
+Export-ModuleMember Get-InstallationPath, Get-AccountPaths, New-ZipPath, Get-LatestZipPath, Get-WTFPath, Get-AddonsPath
