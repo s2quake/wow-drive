@@ -1,8 +1,7 @@
 Import-Module "./common.psm1"
 
 try {
-    $installPath = Get-InstallationPath
-    $addonsPath = Join-Path $installPath "Interface/AddOns" -Resolve
+    $addonsPath = Get-AddonsPath
     $backupPath = Join-Path $installPath "Interface/AddOns-new"
     $zipPath = Get-LatestZipPath $PSScriptRoot "AddOns"
     

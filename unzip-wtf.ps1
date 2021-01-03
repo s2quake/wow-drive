@@ -4,8 +4,7 @@ param(
 Import-Module "./common.psm1"
 
 try {
-    $installPath = Get-InstallationPath
-    $wtfPath = Join-Path $installPath "WTF" -Resolve
+    $wtfPath = Get-WTFPath
     $zipPath = Get-LatestZipPath $PSScriptRoot "WTF"
     $expandPath = Join-Path (Resolve-Path "~") "WTF"
 
