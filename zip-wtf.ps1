@@ -13,7 +13,7 @@ try {
     Copy-Item -Path $wtfPath -Destination "~" -Recurse
     $srcPath = Join-Path "~" "WTF" -Resolve
     $garbagePaths | Where-Object { Test-Path $_ } | ForEach-Object { Remove-Item $_ -Recurse -Force }
-    $zipPath = New-ZipPath $PSScriptRoot "WTF"
+    $zipPath = New-ZipPath (Get-OneDrivePath) "WTF"
     Compress-Archive -Path "$srcPath/*" -DestinationPath $zipPath
 }
 finally {

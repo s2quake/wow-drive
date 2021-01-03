@@ -18,6 +18,10 @@ function Get-InstallationPath {
     return $installPath
 }
 
+function Get-OneDrivePath {
+    return Resolve-Path "~/OneDrive/World of Warcraft"
+}
+
 function Get-WTFPath {
     $installationPath = Get-InstallationPath
     return Join-Path $installationPath "WTF" -Resolve -ErrorAction Stop
@@ -73,4 +77,4 @@ function Get-LatestZipPath {
     return Join-Path $Path $zipName
 }
 
-Export-ModuleMember Get-InstallationPath, Get-AccountPaths, New-ZipPath, Get-LatestZipPath, Get-WTFPath, Get-AddonsPath
+Export-ModuleMember Get-InstallationPath, Get-AccountPaths, New-ZipPath, Get-LatestZipPath, Get-WTFPath, Get-AddonsPath, Get-OneDrivePath

@@ -5,7 +5,7 @@ Import-Module "./common.psm1"
 
 try {
     $wtfPath = Get-WTFPath
-    $zipPath = Get-LatestZipPath $PSScriptRoot "WTF"
+    $zipPath = Get-LatestZipPath (Get-OneDrivePath) "WTF"
     $expandPath = Join-Path (Resolve-Path "~") "WTF"
 
     Expand-Archive -LiteralPath $zipPath -DestinationPath $expandPath

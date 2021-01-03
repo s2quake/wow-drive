@@ -2,7 +2,7 @@ Import-Module "./common.psm1"
 
 try {
     $addonsPath = Get-AddonsPath
-    $zipPath = New-ZipPath $PSScriptRoot "AddOns"
+    $zipPath = New-ZipPath (Get-OneDrivePath) "AddOns"
     Compress-Archive -Path "$addonsPath/*" -DestinationPath $zipPath
 }
 finally {
