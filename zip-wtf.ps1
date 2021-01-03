@@ -12,12 +12,7 @@ try {
 
     Copy-Item -Path $wtfPath -Destination "~" -Recurse
     $srcPath = Join-Path "~" "WTF" -Resolve
-    $garbagePaths | ForEach-Object {
-        if (Test-Path $_) {
-            Remove-Item $_ -Recurse -Force
-        }
-    }
-
+    $garbagePaths | Where-Object { Test-Path $_ } | ForEach-Object { Remove-Item $_ -Recurse -Force }
     $zipPath = New-ZipPath $PSScriptRoot "WTF"
     Compress-Archive -Path "$srcPath/*" -DestinationPath $zipPath
 }
