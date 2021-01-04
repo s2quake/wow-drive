@@ -66,7 +66,7 @@ function Get-LatestZipPath {
     )    
     $files = Get-ChildItem $Path | 
     Where-Object { $_ -Match "$Name-\d\d\d\d-\d\d-\d\d[.]zip" } | 
-    ForEach-Object -Process { $_ -replace ".+$Name-(\d\d\d\d-\d\d-\d\d)[.]zip", "`$1" } | 
+    ForEach-Object -Process { $_ -replace ".*$Name-(\d\d\d\d-\d\d-\d\d)[.]zip", "`$1" } | 
     ForEach-Object -Process { [DateTime]::ParseExact($_, "yyyy-MM-dd", $null) } | 
     Sort-Object -Descending
         
